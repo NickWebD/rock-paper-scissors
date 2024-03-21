@@ -27,6 +27,20 @@ function getPlayerChoice() {
     }
   }
 }
-console.log(getPlayerChoice());
+
 //function to play a single round of RPS
-//function playRound(playerSelection, computerSelection) {}
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+    alert("It's a tie");
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+  ) {
+    alert(`You win! ${playerSelection} beats ${computerSelection}`);
+  } else {
+    alert(`You lose! ${computerSelection} beats ${playerSelection}`);
+  }
+}
+
+playRound(getPlayerChoice(), getComputerChoice());
