@@ -30,17 +30,45 @@ function getPlayerChoice() {
 
 //function to play a single round of RPS
 function playRound(playerSelection, computerSelection) {
+  let winner = "";
   if (playerSelection === computerSelection) {
-    alert("It's a tie");
+    winner = "It's a tie";
+    return "tie";
   } else if (
     (playerSelection === "rock" && computerSelection === "scissors") ||
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
-    alert(`You win! ${playerSelection} beats ${computerSelection}`);
+    winner = `You win! ${playerSelection} beats ${computerSelection}`;
+    return "player";
   } else {
-    alert(`You lose! ${computerSelection} beats ${playerSelection}`);
+    winner = `You lose! ${computerSelection} beats ${playerSelection}`;
+    return "computer";
   }
 }
 
-playRound(getPlayerChoice(), getComputerChoice());
+//function to play a game
+function game() {
+  let result;
+  let count = 0;
+  let playerScore = 0;
+  let computerScore = 0;
+  do {
+    result = playRound(getPlayerChoice(), getComputerChoice());
+    if (result === "player") playerScore++;
+    if (result === "computer") computerScore++;
+
+    count++;
+    console.log(count && result);
+  } while (count < 5);
+
+  if (playerScore > computerScore) {
+    alert("You win");
+  } else if (playerScore === computerScore) {
+    alert("It's a draw!");
+  } else {
+    alert("Computer wins!");
+  }
+}
+
+game();
