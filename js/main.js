@@ -53,14 +53,14 @@ function game() {
   let count = 0;
   let playerScore = 0;
   let computerScore = 0;
-  do {
-    result = playRound(getPlayerChoice(), getComputerChoice());
-    if (result === "player") playerScore++;
-    if (result === "computer") computerScore++;
+  //do {
+  //  result = playRound(getPlayerChoice(), getComputerChoice());
+  //  if (result === "player") playerScore++;
+  //  if (result === "computer") computerScore++;
 
-    count++;
-    console.log(count && result);
-  } while (count < 5);
+  //  count++;
+  //  console.log(count && result);
+  //} while (count < 5);
 
   if (playerScore > computerScore) {
     alert("You win");
@@ -71,4 +71,4 @@ function game() {
   }
 }
 
-game();
+//game();
