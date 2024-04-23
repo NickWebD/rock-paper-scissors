@@ -37,6 +37,7 @@ function playRound(playerSelection) {
     computerWins++;
   }
 
+  //display result and scores on the page
   result.textContent = winner;
   playerScore.textContent = `Your score: ${playerWins}`;
   computerScore.textContent = `Computer score: ${computerWins}`;
@@ -55,6 +56,7 @@ function endGame() {
     alert("Sorry, you have lost the game. Better luck next time!");
   }
 
+//disable buttons to prevent playing game
   buttons.forEach((button) => {
     button.disabled = true;
   });
