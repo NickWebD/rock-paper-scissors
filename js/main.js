@@ -1,36 +1,41 @@
 "use strict";
 const buttons = document.querySelectorAll(".btn");
+const result = document.querySelector(".result");
 
 // function to define a computer choice
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
-  let computerChoice = choices[Math.floor(Math.random() * 3)];
-  return computerChoice;
+  return choices[Math.floor(Math.random() * 3)];
 }
 
-//function to define a payer choice
+//function to play a round
+function playRound(playerSelection) {
+  const computerSelection = getComputerChoice();
+  let winner = "";
 
-getPlayerChoice();
+  //compare player and computer choices
 
-//function to play a single round of RPS
-//function playRound(playerSelection, computerSelection) {
-//  let winner = "";
-//  if (playerSelection === computerSelection) {
-//    winner = "It's a tie";
-//    return "tie";
-//  } else if (
-//    (playerSelection === "rock" && computerSelection === "scissors") ||
-//    (playerSelection === "paper" && computerSelection === "rock") ||
-//    (playerSelection === "scissors" && computerSelection === "paper")
-//  ) {
-//    winner = `You win! ${playerSelection} beats ${computerSelection}`;
-//    return "player";
-//  } else {
-//    winner = `You lose! ${computerSelection} beats ${playerSelection}`;
-//    return "computer";
-//  }
-//}
+  if (playerSelection === computerSelection) {
+    winner = "It's a tie";
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+  ) {
+    winner = `You win! ${playerSelection} beats ${computerSelection}`;
+  } else {
+    winner = `You lose! ${computerSelection} beats ${playerSelection}`;
+  }
+  result.textContent = winner;
+}
 
+//Attach event listeners to buttons to define a player selection
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const playerSelection = e.target.id;
+    playRound(playerSelection);
+  });
+});
 //function to play a game
 //function game() {
 //  let result;
