@@ -14,25 +14,29 @@ function playRound(playerSelection) {
   let winner = "";
 
   //compare player and computer choices
-
   if (playerSelection === computerSelection) {
-    winner = "It's a tie";
+    winner = "It's a tie.";
   } else if (
     (playerSelection === "rock" && computerSelection === "scissors") ||
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
-    winner = `You win! ${playerSelection} beats ${computerSelection}`;
+    winner = `You win! ${playerSelection[0]
+      .toUpperCase()
+      .concat(playerSelection.slice(1))} beats ${computerSelection}.`;
   } else {
-    winner = `You lose! ${computerSelection} beats ${playerSelection}`;
+    winner = `You lose! ${computerSelection[0]
+      .toUpperCase()
+      .concat(computerSelection.slice(1))} beats ${playerSelection}.`;
   }
+
   result.textContent = winner;
 }
 
 //Attach event listeners to buttons to define a player selection
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    const playerSelection = e.target.id;
+    let playerSelection = e.target.id;
     playRound(playerSelection);
   });
 });
