@@ -1,6 +1,11 @@
 "use strict";
 const buttons = document.querySelectorAll(".btn");
 const result = document.querySelector(".result");
+const playerScore = document.querySelector("#player");
+const computerScore = document.querySelector("#computer");
+
+let playerWins = 0;
+let computerWins = 0;
 
 // function to define a computer choice
 function getComputerChoice() {
@@ -24,13 +29,35 @@ function playRound(playerSelection) {
     winner = `You win! ${playerSelection[0]
       .toUpperCase()
       .concat(playerSelection.slice(1))} beats ${computerSelection}.`;
+    playerWins++;
   } else {
     winner = `You lose! ${computerSelection[0]
       .toUpperCase()
       .concat(computerSelection.slice(1))} beats ${playerSelection}.`;
+    computerWins++;
   }
 
   result.textContent = winner;
+  playerScore.textContent = `Your score: ${playerWins}`;
+  computerScore.textContent = `Computer score: ${computerWins}`;
+
+  //check for end game
+  if (playerWins === 5 || computerWins === 5) {
+    endGame();
+  }
+}
+
+//function to check if any of players has 5 points
+function endGame() {
+  if (playerWins === 5) {
+    alert("Congratulations! You have won the game!");
+  } else {
+    alert("Sorry, you have lost the game. Better luck next time!");
+  }
+
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
 }
 
 //Attach event listeners to buttons to define a player selection
@@ -40,28 +67,3 @@ buttons.forEach((button) => {
     playRound(playerSelection);
   });
 });
-//function to play a game
-//function game() {
-//  let result;
-//  let count = 0;
-//  let playerScore = 0;
-//  let computerScore = 0;
-//do {
-//  result = playRound(getPlayerChoice(), getComputerChoice());
-//  if (result === "player") playerScore++;
-//  if (result === "computer") computerScore++;
-
-//  count++;
-//  console.log(count && result);
-//} while (count < 5);
-
-//  if (playerScore > computerScore) {
-//    alert("You win");
-//  } else if (playerScore === computerScore) {
-//    alert("It's a draw!");
-//  } else {
-//    alert("Computer wins!");
-//  }
-//}
-
-//game();
